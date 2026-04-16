@@ -1,0 +1,65 @@
+x-minecraft-environment: &minecraft-environment
+  EULA: "TRUE"
+  MEMORY: "6144M"
+  MAX_PLAYERS: "30"
+  USE_AIKAR_FLAGS: "true"
+  USE_MEOWICE_FLAGS: "true"
+  OPS: |-
+    test
+
+x-minecraft-service: &minecraft-service
+  image: itzg/minecraft-server:latest
+  tty: true
+  stdin_open: true
+  restart: always
+
+services:
+  lobby:
+    <<: *minecraft-service
+    ports:
+      - "25565:25565"
+    volumes:
+      - "../lobby:/data"
+    environment:
+      <<: *minecraft-environment
+      LEVEL: "lobby"
+
+  survival:
+    <<: *minecraft-service
+    ports:
+      - "25566:25565"
+    volumes:
+      - "../survival:/data"
+    environment:
+      <<: *minecraft-environment
+      LEVEL: "survival"
+
+  construction:
+    <<: *minecraft-service
+    ports:
+      - "25567:25565"
+    volumes:
+      - "../construction:/data"
+    environment:
+      <<: *minecraft-environment
+      LEVEL: "construction"
+
+  streaming:
+    <<: *minecraft-service
+    ports:
+      - "25568:25565"
+    volumes:
+      - "../streaming:/data"
+    environment:
+      <<: *minecraft-environment
+      LEVEL: "streaming"
+
+  ktc-survival:
+    <<: *minecraft-service
+    ports:
+      - "25569:25565"
+    volumes:
+      - "../ktc-survival:/data"
+    environment:
+      <<: *minecraft-environment
+      LEVEL: "private"
