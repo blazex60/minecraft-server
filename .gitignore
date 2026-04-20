@@ -1,2 +1,5 @@
 # Minecraft server runtime data
-generated/
+generated/*
+!generated/velocity/
+generated/velocity/*
+!generated/velocity/velocity.toml

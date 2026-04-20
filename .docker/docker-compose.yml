@@ -17,7 +17,7 @@ services:
   lobby:
     <<: *minecraft-service
     expose:
-      - "30066"
+      - "25565"
     volumes:
       - "../generated/lobby:/data"
     environment:
@@ -27,7 +27,7 @@ services:
   survival:
     <<: *minecraft-service
     expose:
-      - "30067"
+      - "25565"
     volumes:
       - "../generated/survival:/data"
     environment:
@@ -37,7 +37,7 @@ services:
   construction:
     <<: *minecraft-service
     expose:
-      - "30068"
+      - "25565"
     volumes:
       - "../generated/construction:/data"
     environment:
@@ -47,7 +47,7 @@ services:
   streaming:
     <<: *minecraft-service
     expose:
-      - "30069"
+      - "25565"
     volumes:
       - "../generated/streaming:/data"
     environment:
@@ -57,7 +57,7 @@ services:
   ktc-survival:
     <<: *minecraft-service
     expose:
-      - "30070"
+      - "25565"
     volumes:
       - "../generated/ktc-survival:/data"
     environment:
