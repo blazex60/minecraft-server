@@ -1,0 +1,13 @@
+containers:
+  # Java版
+  java:
+    # Mod Server (Paper)
+    - name: mc_paper
+      worlds:
+        - /server/paper/lv30066
+schedule:
+  interval: 12h
+trim:
+  trimDays: 2
+  keepDays: 14
+  minKeep: 2

@@ -1,0 +1,85 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1777164320483,
+  "projectRoot": "/home/mitsu/Documents/minecraft-server",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "backups": {
+      "path": "backups",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1777164320477,
+      "keyFiles": [
+        "config.yml"
+      ]
+    },
+    "data": {
+      "path": "data",
+      "purpose": "Data files",
+      "fileCount": 18,
+      "lastAccessed": 1777164320478,
+      "keyFiles": [
+        "banned-ips.json",
+        "banned-players.json",
+        "bukkit.yml",
+        "commands.yml",
+        "eula.txt"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "ddns/cloudflare-api.py",
+      "accessCount": 2,
+      "lastAccessed": 1777164455215,
+      "type": "file"
+    },
+    {
+      "path": "Dockerfile",
+      "accessCount": 2,
+      "lastAccessed": 1777164471715,
+      "type": "file"
+    },
+    {
+      "path": "docker-compose.yml",
+      "accessCount": 2,
+      "lastAccessed": 1777164473461,
+      "type": "file"
+    },
+    {
+      "path": ".env.example",
+      "accessCount": 1,
+      "lastAccessed": 1777164481998,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
