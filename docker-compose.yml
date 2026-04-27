@@ -13,8 +13,7 @@ services:
       USE_MEOWICE_FLAGS: "true"
       ENABLE_COMMAND_BLOCK: "true"
       TZ: "Asia/Tokyo"
-      OPS: |-
-        test
+      OPS: "${MC_OPS}"
       PLAYER_IDLE_TIMEOUT: "300"
       MANAGEMENT_SERVER_ENABLED: "false"
       RCON_PASSWORD: "${RCON_PASSWORD}"
