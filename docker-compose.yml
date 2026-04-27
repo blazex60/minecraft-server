@@ -51,17 +51,6 @@ services:
       - ./backups:/backups
     restart: unless-stopped
 
-  ddns:
-    container_name: mc_ddns
-    build: .
-    restart: unless-stopped
-    environment:
-      CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}"
-      CLOUDFLARE_ZONE_ID: "${CLOUDFLARE_ZONE_ID}"
-      CLOUDFLARE_RECORD_ID: "${CLOUDFLARE_RECORD_ID}"
-      CLOUDFLARE_DOMAIN: "${CLOUDFLARE_DOMAIN}"
-      UPDATE_INTERVAL: "${UPDATE_INTERVAL:-300}"
-
   playit:
     image: ghcr.io/playit-cloud/playit-agent:latest
     network_mode: host
