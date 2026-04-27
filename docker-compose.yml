@@ -1,0 +1,61 @@
+services:
+  mc:
+    container_name: mc
+    image: itzg/minecraft-server:latest
+    tty: true
+    stdin_open: true
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+      MEMORY: "2048M"
+      MAX_PLAYERS: "30"
+      USE_AIKAR_FLAGS: "true"
+      USE_MEOWICE_FLAGS: "true"
+      ENABLE_COMMAND_BLOCK: "true"
+      TZ: "Asia/Tokyo"
+      OPS: "${MC_OPS}"
+      PLAYER_IDLE_TIMEOUT: "300"
+      MANAGEMENT_SERVER_ENABLED: "false"
+      RCON_PASSWORD: "${RCON_PASSWORD}"
+    ports:
+      - "127.0.0.1:25565:25565"
+    volumes:
+      - "./data:/data"
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    restart: unless-stopped
+
+  # =================================================== #
+  #   Backup container service for Minecraft            #
+  # =================================================== #
+  backups:
+    container_name: mc_backup
+    image: itzg/mc-backup
+    depends_on:
+      mc:
+        condition: service_healthy
+    environment:
+      TZ: "Asia/Tokyo"
+      RCON_HOST: mc
+      RCON_PASSWORD: "${RCON_PASSWORD}"
+      BACKUP_INTERVAL: "12h"
+      INITIAL_DELAY: "2m"
+      DEST_DIR: /backups
+      SRC_DIR: /data
+      BACKUP_METHOD: tar
+      PRUNE_BACKUPS_DAYS: "14"
+    volumes:
+      - ./data:/data:ro
+      - ./backups:/backups
+    restart: unless-stopped
+
+  playit:
+    image: ghcr.io/playit-cloud/playit-agent@sha256:<known-good-digest>
+    network_mode: host
+    depends_on:
+      - mc
+    environment:
+      SECRET_KEY: "${PLAYIT_SECRET}"
+      RUST_LOG: "warn"
+    restart: unless-stopped
