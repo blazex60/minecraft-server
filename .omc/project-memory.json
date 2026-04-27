@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1777164320483,
+  "lastScanned": 1777279228511,
   "projectRoot": "/home/mitsu/Documents/minecraft-server",
   "techStack": {
     "languages": [],
@@ -35,17 +35,21 @@
     "backups": {
       "path": "backups",
       "purpose": null,
-      "fileCount": 2,
-      "lastAccessed": 1777164320477,
+      "fileCount": 8,
+      "lastAccessed": 1777279228504,
       "keyFiles": [
-        "config.yml"
+        "config.yml",
+        "world-20260427-124848.tar.gz",
+        "world-20260427-163532.tar.gz",
+        "world-20260427-170601.tar.gz",
+        "world-20260427-172545.tar.gz"
       ]
     },
     "data": {
       "path": "data",
       "purpose": "Data files",
       "fileCount": 18,
-      "lastAccessed": 1777164320478,
+      "lastAccessed": 1777279228505,
       "keyFiles": [
         "banned-ips.json",
         "banned-players.json",
@@ -53,25 +57,40 @@
         "commands.yml",
         "eula.txt"
       ]
+    },
+    "ddns": {
+      "path": "ddns",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1777279228507,
+      "keyFiles": [
+        "cloudflare-api.py"
+      ]
     }
   },
   "hotPaths": [
     {
       "path": "docker-compose.yml",
-      "accessCount": 7,
-      "lastAccessed": 1777214191496,
+      "accessCount": 21,
+      "lastAccessed": 1777280333723,
       "type": "file"
     },
     {
       "path": ".env.example",
-      "accessCount": 4,
-      "lastAccessed": 1777214001007,
+      "accessCount": 7,
+      "lastAccessed": 1777262403094,
+      "type": "file"
+    },
+    {
+      "path": ".env",
+      "accessCount": 6,
+      "lastAccessed": 1777262426715,
       "type": "file"
     },
     {
       "path": "backups/config.yml",
-      "accessCount": 3,
-      "lastAccessed": 1777214000097,
+      "accessCount": 4,
+      "lastAccessed": 1777255309580,
       "type": "file"
     },
     {
@@ -84,12 +103,6 @@
       "path": "ddns/cloudflare-api.py",
       "accessCount": 3,
       "lastAccessed": 1777214005310,
-      "type": "file"
-    },
-    {
-      "path": ".env",
-      "accessCount": 2,
-      "lastAccessed": 1777213933394,
       "type": "file"
     },
     {

@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"docker ps -a | grep ddns && docker compose up -d ddns 2>&1\",\"description\":\"DDNSコンテナの状態確認と起動\"}",
-  "error": "Exit code 1",
-  "timestamp": "2026-04-26T14:31:31.003Z",
+  "tool_input_preview": "{\"command\":\"dig SRV _minecraft._tcp.submit-governance.gl.joinmc.link +short && echo \\\"---PORT CHECK---\\\" && nc -zv 147.185.221.229 25565 2>&1\",\"description\":\"playit.ggホスト名のSRVレコードとポート確認\"}",
+  "error": "Exit code 127\n1 1 22353 submit-governance.gl.at.ply.gg.\n---PORT CHECK---\n/bin/bash: line 1: nc: command not found",
+  "timestamp": "2026-04-27T09:07:26.046Z",
   "retry_count": 1
 }
