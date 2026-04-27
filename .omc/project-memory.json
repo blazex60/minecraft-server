@@ -71,20 +71,20 @@
   "hotPaths": [
     {
       "path": "docker-compose.yml",
-      "accessCount": 21,
-      "lastAccessed": 1777280333723,
+      "accessCount": 23,
+      "lastAccessed": 1777282176008,
       "type": "file"
     },
     {
       "path": ".env.example",
-      "accessCount": 7,
-      "lastAccessed": 1777262403094,
+      "accessCount": 9,
+      "lastAccessed": 1777282182070,
       "type": "file"
     },
     {
       "path": ".env",
-      "accessCount": 6,
-      "lastAccessed": 1777262426715,
+      "accessCount": 7,
+      "lastAccessed": 1777282198656,
       "type": "file"
     },
     {
