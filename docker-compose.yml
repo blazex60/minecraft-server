@@ -8,6 +8,7 @@ services:
       EULA: "TRUE"
       TYPE: "PAPER"
       VERSION: "1.21.11"
+      LEVEL: "lobby"
       MEMORY: "2048M"
       MAX_PLAYERS: "30"
       USE_AIKAR_FLAGS: "true"
