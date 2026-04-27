@@ -3,6 +3,8 @@ containers:
   java:
     # Mod Server (Paper)
     - name: mc
+      newline: lf
+      stopTimeout: 120s
       worlds:
         - /server/world
         - /server/world_nether

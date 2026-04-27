@@ -4,8 +4,6 @@ services:
     image: itzg/minecraft-server:latest
     tty: true
     stdin_open: true
-    ports:
-      - "25565:25565"
     environment:
       EULA: "TRUE"
       TYPE: "PAPER"
@@ -19,6 +17,7 @@ services:
         test
       PLAYER_IDLE_TIMEOUT: "300"
       MANAGEMENT_SERVER_ENABLED: "false"
+      RCON_PASSWORD: "${RCON_PASSWORD}"
     volumes:
       - "./data:/data"
     restart: unless-stopped
@@ -28,18 +27,23 @@ services:
   # =================================================== #
   backups:
     container_name: mc_backup
-    image: kaiede/minecraft-bedrock-backup
-    tty: true
+    image: itzg/mc-backup
     depends_on:
       mc:
         condition: service_healthy
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./backups:/backups
-      - ./data:/server
     environment:
       TZ: "Asia/Tokyo"
-      CONFIG_DIR: "/backups"
+      RCON_HOST: mc
+      RCON_PASSWORD: "${RCON_PASSWORD}"
+      BACKUP_INTERVAL: "12h"
+      INITIAL_DELAY: "2m"
+      DEST_DIR: /backups
+      SRC_DIR: /data
+      BACKUP_METHOD: tar
+      PRUNE_BACKUPS_DAYS: "14"
+    volumes:
+      - ./data:/data:ro
+      - ./backups:/backups
     restart: unless-stopped
 
   ddns:
@@ -52,3 +56,13 @@ services:
       CLOUDFLARE_RECORD_ID: "${CLOUDFLARE_RECORD_ID}"
       CLOUDFLARE_DOMAIN: "${CLOUDFLARE_DOMAIN}"
       UPDATE_INTERVAL: "${UPDATE_INTERVAL:-300}"
+
+  playit:
+    container_name: mc_playit
+    image: ghcr.io/playit-cloud/playit-agent:latest
+    depends_on:
+      - mc
+    environment:
+      SECRET_KEY: "${PLAYIT_SECRET}"
+      RUST_LOG: "warn"
+    restart: unless-stopped
