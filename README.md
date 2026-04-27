@@ -112,6 +112,8 @@ mcrcon -H 100.95.202.53 -P 25575 -p 'パスワード' -w 5
 | Multiverse-Core | 複数ワールド管理 |
 | Multiverse-Inventories | ワールドごとのインベントリ分離 |
 | LuckPerms | 権限管理（プライベートワールドのアクセス制限） |
+| WorldEdit | WorldGuardの依存プラグイン |
+| WorldGuard | ロビーのアクション制限（移動・ポータルのみ許可） |
 
 ### ワールド構成（予定）
 
