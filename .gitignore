@@ -1,8 +1,4 @@
 /data
 .env
-backups/.bedrockifierToken
-backups/.service_is_healthy
-backups/.mc-backup-lock
-backups/*.tar.gz
-backups/*.zip
-.omc/state/
+backups/
+.omc/
