@@ -7,7 +7,7 @@ services:
     environment:
       EULA: "TRUE"
       TYPE: "PAPER"
-      VERSION: "1.21.1"
+      VERSION: "1.21.11"
       MEMORY: "2048M"
       MAX_PLAYERS: "30"
       USE_AIKAR_FLAGS: "true"
