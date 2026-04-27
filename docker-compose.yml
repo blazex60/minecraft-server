@@ -18,6 +18,8 @@ services:
       PLAYER_IDLE_TIMEOUT: "300"
       MANAGEMENT_SERVER_ENABLED: "false"
       RCON_PASSWORD: "${RCON_PASSWORD}"
+    ports:
+      - "127.0.0.1:25565:25565"
     volumes:
       - "./data:/data"
     dns:
@@ -61,8 +63,8 @@ services:
       UPDATE_INTERVAL: "${UPDATE_INTERVAL:-300}"
 
   playit:
-    container_name: mc_playit
     image: ghcr.io/playit-cloud/playit-agent:latest
+    network_mode: host
     depends_on:
       - mc
     environment:
