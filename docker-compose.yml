@@ -51,7 +51,7 @@ services:
     restart: unless-stopped
 
   playit:
-    image: ghcr.io/playit-cloud/playit-agent@sha256:<known-good-digest>
+    image: ghcr.io/playit-cloud/playit-agent:latest
     network_mode: host
     depends_on:
       - mc
