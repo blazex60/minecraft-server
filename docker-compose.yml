@@ -53,6 +53,22 @@ services:
       - ./backups:/backups
     restart: unless-stopped
 
+  netdata:
+    container_name: mc_netdata
+    image: netdata/netdata:latest
+    hostname: mc-server
+    ports:
+      - "100.95.202.53:19999:19999"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    restart: unless-stopped
+
   playit:
     image: ghcr.io/playit-cloud/playit-agent@sha256:84d8ea84529ae9ac6a4c9463033e0b7d29c1e6cc8311897bd2df0cb1a7af06f6
     network_mode: host
