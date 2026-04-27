@@ -137,6 +137,10 @@ docker inspect <image> --format '{{index .RepoDigests 0}}'
 docker compose up -d
 ```
 
+## ドキュメント
+
+- [Multiverse セットアップ・操作手順](docs/multiverse.md)
+
 ## gitignore について
 
 以下はバージョン管理対象外です：
