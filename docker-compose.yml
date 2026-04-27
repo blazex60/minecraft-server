@@ -1,12 +1,13 @@
 services:
   mc:
     container_name: mc
-    image: itzg/minecraft-server:latest
+    image: itzg/minecraft-server@sha256:7e71de1b69aedcc0d74f0126251802d28fe3a71feb5cde6f0ff545fbdb77274f
     tty: true
     stdin_open: true
     environment:
       EULA: "TRUE"
       TYPE: "PAPER"
+      VERSION: "1.21.1"
       MEMORY: "2048M"
       MAX_PLAYERS: "30"
       USE_AIKAR_FLAGS: "true"
@@ -31,7 +32,7 @@ services:
   # =================================================== #
   backups:
     container_name: mc_backup
-    image: itzg/mc-backup
+    image: itzg/mc-backup@sha256:187904cef15de10f5f4241376442e51edee427de13f3378226511c733e2f138d
     depends_on:
       mc:
         condition: service_healthy
@@ -51,7 +52,7 @@ services:
     restart: unless-stopped
 
   playit:
-    image: ghcr.io/playit-cloud/playit-agent@sha256:<known-good-digest>
+    image: ghcr.io/playit-cloud/playit-agent@sha256:84d8ea84529ae9ac6a4c9463033e0b7d29c1e6cc8311897bd2df0cb1a7af06f6
     network_mode: host
     depends_on:
       - mc
