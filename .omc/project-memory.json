@@ -57,27 +57,45 @@
   },
   "hotPaths": [
     {
-      "path": "ddns/cloudflare-api.py",
-      "accessCount": 2,
-      "lastAccessed": 1777164455215,
-      "type": "file"
-    },
-    {
-      "path": "Dockerfile",
-      "accessCount": 2,
-      "lastAccessed": 1777164471715,
-      "type": "file"
-    },
-    {
       "path": "docker-compose.yml",
-      "accessCount": 2,
-      "lastAccessed": 1777164473461,
+      "accessCount": 7,
+      "lastAccessed": 1777214191496,
       "type": "file"
     },
     {
       "path": ".env.example",
+      "accessCount": 4,
+      "lastAccessed": 1777214001007,
+      "type": "file"
+    },
+    {
+      "path": "backups/config.yml",
+      "accessCount": 3,
+      "lastAccessed": 1777214000097,
+      "type": "file"
+    },
+    {
+      "path": "Dockerfile",
+      "accessCount": 3,
+      "lastAccessed": 1777214000156,
+      "type": "file"
+    },
+    {
+      "path": "ddns/cloudflare-api.py",
+      "accessCount": 3,
+      "lastAccessed": 1777214005310,
+      "type": "file"
+    },
+    {
+      "path": ".env",
+      "accessCount": 2,
+      "lastAccessed": 1777213933394,
+      "type": "file"
+    },
+    {
+      "path": "backups/.bedrockifierToken",
       "accessCount": 1,
-      "lastAccessed": 1777164481998,
+      "lastAccessed": 1777214018520,
       "type": "file"
     }
   ],

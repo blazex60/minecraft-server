@@ -1,5 +1,6 @@
 services:
   mc:
+    container_name: mc
     image: itzg/minecraft-server:latest
     tty: true
     stdin_open: true
@@ -20,6 +21,7 @@ services:
       MANAGEMENT_SERVER_ENABLED: "false"
     volumes:
       - "./data:/data"
+    restart: unless-stopped
 
   # =================================================== #
   #   Backup container service for Minecraft            #
@@ -28,12 +30,16 @@ services:
     container_name: mc_backup
     image: kaiede/minecraft-bedrock-backup
     tty: true
+    depends_on:
+      mc:
+        condition: service_healthy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./backups:/backups
       - ./data:/server
     environment:
       TZ: "Asia/Tokyo"
+      CONFIG_DIR: "/backups"
     restart: unless-stopped
 
   ddns:

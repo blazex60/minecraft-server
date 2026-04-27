@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"docker ps -a | grep ddns && docker compose up -d ddns 2>&1\",\"description\":\"DDNSコンテナの状態確認と起動\"}",
+  "error": "Exit code 1",
+  "timestamp": "2026-04-26T14:31:31.003Z",
+  "retry_count": 1
+}

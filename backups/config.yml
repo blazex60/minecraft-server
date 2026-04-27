@@ -2,9 +2,11 @@ containers:
   # Java版
   java:
     # Mod Server (Paper)
-    - name: mc_paper
+    - name: mc
       worlds:
-        - /server/paper/lv30066
+        - /server/world
+        - /server/world_nether
+        - /server/world_the_end
 schedule:
   interval: 12h
 trim:
