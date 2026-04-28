@@ -8,7 +8,7 @@ services:
       EULA: "TRUE"
       TYPE: "PAPER"
       VERSION: "1.21.11"
-      LEVEL: "lobby"
+      LEVEL: "world"  #学スタサーバーができるまで暫定処置
       MEMORY: "${MC_MEMORY}"
       MAX_PLAYERS: "30"
       USE_AIKAR_FLAGS: "true"
@@ -52,22 +52,6 @@ services:
     volumes:
       - ./data:/data:ro
       - ./backups:/backups
-    restart: unless-stopped
-
-  netdata:
-    container_name: mc_netdata
-    image: netdata/netdata:latest
-    hostname: mc-server
-    ports:
-      - "${TAILSCALE_IP}:19999:19999"
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    cap_add:
-      - SYS_PTRACE
-    security_opt:
-      - apparmor:unconfined
     restart: unless-stopped
 
   playit:
