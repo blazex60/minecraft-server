@@ -2,11 +2,11 @@
 
 ## サービス構成
 
-| コンテナ名 | サービス | 用途 |
+| サービス名 | イメージ | 用途 |
 |---|---|---|
 | `mc` | PaperMC 1.21.11 | Minecraftサーバー本体 |
-| `mc_backup` | itzg/mc-backup | 自動バックアップ（12時間ごと） |
-| `mc_netdata` | Netdata | リソース監視 |
+| `backups` | itzg/mc-backup | 自動バックアップ（12時間ごと） |
+| `netdata` | Netdata | リソース監視 |
 | `playit` | playit.gg agent | 外部公開トンネル |
 
 ---

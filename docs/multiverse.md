@@ -52,17 +52,17 @@ docker compose restart mc
 
 ```
 
-### 2. スポーンをロビーに設定
+### 3. スポーンをロビーに設定
 
 **ロビーワールドに移動してから**実行します。
 
 ```
 /mv setspawn
-/mv conf firstspawnworld lobby
-/mv conf enforceaccess true
+/mv config firstspawnworld lobby
+/mv config enforceaccess true
 ```
 
-### 3. インベントリ分離（Multiverse-Inventories）
+### 4. インベントリ分離（Multiverse-Inventories）
 
 `./data/plugins/Multiverse-Inventories/config.yml` を編集：
 
@@ -92,38 +92,75 @@ groups:
 /mvinv reload
 ```
 
-### 4. ロビーの行動制限（WorldGuard）
+### 5. ロビーの行動制限（WorldGuard）
 
 移動とポータル利用のみ許可し、それ以外のアクションをすべて禁止します。
 
 **lobbyワールドに移動してから**以下を実行します。
 
+`__global__` はWorldGuardが各ワールドに自動で作成するグローバルリージョンです。WorldEdit選択不要で実行できます。
+
 ```
-# ワールド全体をWorldGuardのリージョンとして定義
-/rg define lobby-world
-
-# 全プレイヤーをメンバーに追加
-/rg addmember lobby-world g:default
-
 # ブロック破壊・設置を禁止
-/rg flag lobby-world block-break deny
-/rg flag lobby-world block-place deny
+/rg flag __global__ block-break deny
+/rg flag __global__ block-place deny
 
 # アイテム使用・ブロック操作を禁止
-/rg flag lobby-world use deny
-/rg flag lobby-world interact deny
+/rg flag __global__ use deny
+/rg flag __global__ interact deny
 
 # PvP・ダメージを禁止
-/rg flag lobby-world pvp deny
-/rg flag lobby-world mob-damage deny
+/rg flag __global__ pvp deny
+/rg flag __global__ mob-damage deny
 
 # ドロップ・拾いを禁止
-/rg flag lobby-world item-drop deny
-/rg flag lobby-world item-pickup deny
+/rg flag __global__ item-drop deny
+/rg flag __global__ item-pickup deny
 
 # ポータル（ネザー・エンド）の利用を許可
-/rg flag lobby-world use-portal allow
+/rg flag __global__ use-portal allow
 ```
+
+> **注意**: OP権限を持つプレイヤーはWorldGuardの制限をデフォルトでバイパスします。一般プレイヤーのみ制限が適用されます。
+
+#### WorldGuard設定のコンフィグ化（自動化）
+
+上記コマンドを実行すると、設定は以下のファイルに保存されます。
+
+```
+./data/plugins/WorldGuard/worlds/lobby/regions.yml
+```
+
+このファイルを事前に作成しておくことで、コマンド実行なしに設定を自動適用できます。
+
+```yaml
+# ./data/plugins/WorldGuard/worlds/lobby/regions.yml
+regions:
+  __global__:
+    type: global
+    priority: -1
+    flags:
+      block-break: deny
+      block-place: deny
+      use: deny
+      interact: deny
+      pvp: deny
+      mob-damage: deny
+      item-drop: deny
+      item-pickup: deny
+      use-portal: allow
+    members:
+      players: []
+      groups: []
+    owners:
+      players: []
+      groups: []
+```
+
+手順：
+1. `./data/plugins/WorldGuard/worlds/lobby/` ディレクトリを作成
+2. 上記内容で `regions.yml` を配置
+3. サーバー起動後にWorldGuardがこのファイルを読み込みます
 
 ゲームルールでモブスポーンや天候も無効化します（lobbyワールドで実行）：
 
@@ -223,7 +260,7 @@ mcrcon -H 100.95.202.53 -P 25575 -p 'パスワード'
 
 ```
 # enforceaccessが有効か確認
-/mv conf enforceaccess
+/mv config enforceaccess
 
 # プレイヤーの権限確認（LuckPerms）
 /lp user <プレイヤー名> permission info
