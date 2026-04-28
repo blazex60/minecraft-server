@@ -141,7 +141,12 @@ docker compose up -d
 
 ## ドキュメント
 
-- [Multiverse セットアップ・操作手順](docs/multiverse.md)
+| ドキュメント | 内容 |
+|---|---|
+| [セットアップガイド](docs/setup.md) | 初期構築手順（環境変数・Tailscale・playit.gg・DNS設定） |
+| [運用マニュアル](docs/operations.md) | 起動・停止・RCON・バックアップ・イメージ更新・トラブルシューティング |
+| [設定リファレンス](docs/configuration.md) | 環境変数・docker-compose・PaperMC設定ファイルの詳細 |
+| [Multiverse セットアップ・操作手順](docs/multiverse.md) | ワールド管理・権限・WorldGuard設定 |
 
 ## gitignore について
 
