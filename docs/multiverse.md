@@ -50,10 +50,6 @@ docker compose restart mc
 /mv create survival NORMAL
 /mv modify survival set gamemode SURVIVAL
 
-# プライベート（権限制限あり）
-/mv create private NORMAL
-/mv modify private set gamemode SURVIVAL
-/mv modify private set permission multiverse.access.private
 ```
 
 ### 2. スポーンをロビーに設定
@@ -87,11 +83,7 @@ groups:
       - survival
     shares:
       - all_inventory
-  - name: private
-    worlds:
-      - private
-    shares:
-      - all_inventory
+
 ```
 
 編集後にリロード：
@@ -146,21 +138,6 @@ groups:
 ```
 
 > **注意**: Multiverse-Core 4.x では `/mv modify` による `allowweather` 設定はサポートされていません。天候の固定は上記のゲームルールで行ってください。
-
----
-
-### 5. プライベートワールドの権限設定（LuckPerms）
-
-```
-# 特定プレイヤーにプライベートワールドへのアクセスを付与
-/lp user <プレイヤー名> permission set multiverse.access.private true
-
-# 権限の確認
-/lp user <プレイヤー名> permission info
-
-# 権限の剥奪
-/lp user <プレイヤー名> permission unset multiverse.access.private
-```
 
 ---
 
