@@ -40,21 +40,20 @@ docker compose restart mc
 ```
 # ロビー
 /mv create lobby NORMAL
-/mv modify set gamemode ADVENTURE lobby
-/mv modify set allowweather false lobby
+/mv modify lobby set gamemode ADVENTURE
 
 # 建築（スーパーフラット・クリエイティブ）
 /mv create build NORMAL -t FLAT
-/mv modify set gamemode CREATIVE build
+/mv modify build set gamemode CREATIVE
 
 # 公開サバイバル
 /mv create survival NORMAL
-/mv modify set gamemode SURVIVAL survival
+/mv modify survival set gamemode SURVIVAL
 
 # プライベート（権限制限あり）
 /mv create private NORMAL
-/mv modify set gamemode SURVIVAL private
-/mv modify set permission multiverse.access.private private
+/mv modify private set gamemode SURVIVAL
+/mv modify private set permission multiverse.access.private
 ```
 
 ### 2. スポーンをロビーに設定
@@ -134,13 +133,19 @@ groups:
 /rg flag lobby-world use-portal allow
 ```
 
-ゲームルールでモブのスポーンも無効化します（lobbyワールドで実行）：
+ゲームルールでモブスポーンや天候も無効化します（lobbyワールドで実行）：
 
 ```
 /gamerule doMobSpawning false
 /gamerule doFireTick false
 /gamerule keepInventory true
+/gamerule doWeatherCycle false
+/weather clear
+/gamerule doDaylightCycle false
+/time set 6000
 ```
+
+> **注意**: Multiverse-Core 4.x では `/mv modify` による `allowweather` 設定はサポートされていません。天候の固定は上記のゲームルールで行ってください。
 
 ---
 
@@ -187,16 +192,16 @@ groups:
 
 ```
 # ゲームモード変更
-/mv modify set gamemode <SURVIVAL|CREATIVE|ADVENTURE|SPECTATOR> <ワールド名>
+/mv modify <ワールド名> set gamemode <SURVIVAL|CREATIVE|ADVENTURE|SPECTATOR>
 
 # PvP設定
-/mv modify set pvp <true|false> <ワールド名>
+/mv modify <ワールド名> set pvp <true|false>
 
 # モンスターのスポーン
-/mv modify set monsters <true|false> <ワールド名>
+/mv modify <ワールド名> set monsters <true|false>
 
 # 動物のスポーン
-/mv modify set animals <true|false> <ワールド名>
+/mv modify <ワールド名> set animals <true|false>
 ```
 
 ### ワールドの読み込み・アンロード
@@ -255,5 +260,5 @@ Multiverse-Inventories の config.yml でワールドが別グループに分か
 
 ```
 # 自動読み込みを有効化
-/mv modify set autoload true <ワールド名>
+/mv modify <ワールド名> set autoload true
 ```
