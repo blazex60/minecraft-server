@@ -6,7 +6,7 @@
 
 | 変数名 | デフォルト値 | 説明 |
 |---|---|---|
-| `TAILSCALE_IP` | （空） | Tailscale のIPアドレス。RCON（25575）および Netdata（19999）のバインド先として使用する。管理者のみアクセス可能にするために Tailscale IP を指定する。 |
+| `TAILSCALE_IP` | （空） | Tailscale のIPアドレス。RCON（25575）のバインド先として使用する。管理者のみアクセス可能にするために Tailscale IP を指定する。 |
 | `MC_MEMORY` | `2048M` | Minecraft サーバーに割り当てるヒープメモリ。`512M` `1024M` `2048M` `4096M` などの形式で指定する。 |
 | `MC_OPS` | （空） | オペレーター権限を付与するプレイヤー名。複数指定する場合はカンマ区切り（例: `Alice,Bob`）。 |
 | `RCON_PASSWORD` | （空） | RCON の認証パスワード。mc サービスと backups サービスで共有する。推測されにくい文字列を設定すること。 |
@@ -23,7 +23,7 @@
 | `EULA` | `TRUE` | Minecraft EULA への同意。起動に必須。 |
 | `TYPE` | `PAPER` | サーバー種別。PaperMC を使用する。 |
 | `VERSION` | `1.21.11` | Minecraft のバージョン。 |
-| `LEVEL` | `lobby` | 初期ワールド（デフォルトワールド）のフォルダ名。 |
+| `LEVEL` | `world` | 初期ワールド（デフォルトワールド）のフォルダ名。 |
 | `MEMORY` | `${MC_MEMORY}` | JVM ヒープメモリ。.env の `MC_MEMORY` を参照する。 |
 | `MAX_PLAYERS` | `30` | 同時接続可能な最大プレイヤー数。 |
 | `USE_AIKAR_FLAGS` | `true` | Aikar's GC フラグを有効化する。G1GC チューニングによりパフォーマンスが向上する。 |
@@ -56,13 +56,6 @@
 - `./data:/data:ro`（読み取り専用でサーバーデータをマウント）
 - `./backups:/backups`（バックアップ保存先）
 
-### netdata（リソースモニタリング）
-
-Netdata によるリアルタイムリソース監視サービスです。
-
-- アクセス URL: `http://<TAILSCALE_IP>:19999`
-- バインドは Tailscale IP に限定されているため、外部からは直接アクセスできません。
-
 ### playit（外部公開トンネル）
 
 [playit.gg](https://playit.gg) を利用した外部公開用トンネルサービスです。
@@ -79,7 +72,6 @@ Netdata によるリアルタイムリソース監視サービスです。
 | 25565 | TCP | 127.0.0.1 | Minecraft Java Edition（localhost のみ。外部公開は playit.gg 経由） |
 | 25575 | TCP | TAILSCALE_IP | RCON（管理コマンド送信用。Tailscale 経由のみ） |
 | 19132 | UDP | 0.0.0.0 | Minecraft Bedrock / 統合版（Switch・コンソール対応） |
-| 19999 | TCP | TAILSCALE_IP | Netdata リソースモニタリング（Tailscale 経由のみ） |
 
 ---
 

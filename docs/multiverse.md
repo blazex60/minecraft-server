@@ -59,7 +59,7 @@ docker compose restart mc
 ```
 /mv setspawn
 /mv config firstspawnworld lobby
-/mv config enforceaccess true
+/mv config enforceaccess false
 ```
 
 ### 4. インベントリ分離（Multiverse-Inventories）
