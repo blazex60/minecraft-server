@@ -8,7 +8,7 @@ services:
       EULA: "TRUE"
       TYPE: "PAPER"
       VERSION: "1.21.11"
-      LEVEL: "world"  #学スタサーバーができるまで暫定処置
+      LEVEL: "lobby"
       MEMORY: "${MC_MEMORY}"
       MAX_PLAYERS: "30"
       USE_AIKAR_FLAGS: "true"

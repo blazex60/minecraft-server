@@ -44,7 +44,7 @@ PLAYIT_SECRET=your_secret_here
 
 | 変数名 | 説明 |
 |---|---|
-| `TAILSCALE_IP` | Tailscale が割り当てた自分のマシンの IP アドレス。RCON や Netdata へのアクセス制限に使用する。 |
+| `TAILSCALE_IP` | Tailscale が割り当てた自分のマシンの IP アドレス。RCON へのアクセス制限に使用する。 |
 | `MC_MEMORY` | Minecraft サーバーに割り当てるメモリ量。例: `2048M`、`4G`。 |
 | `MC_OPS` | サーバーのオペレーター（OP）として登録する Minecraft ユーザー名。カンマ区切りで複数指定できる。 |
 | `RCON_PASSWORD` | RCON 接続に使用するパスワード。バックアップスクリプトからも参照される。 |
@@ -150,6 +150,5 @@ Switch および PS4/PS5、Xbox は、デフォルトでは任意のサーバー
 - [ ] Java Edition から `mc.umikurage.com` でサーバーに接続できる
 - [ ] Bedrock Edition（統合版）からサーバーに接続できる
 - [ ] `.env` の `MC_OPS` に設定したユーザーが OP 権限を持っている（ゲーム内で `/op` コマンドで確認）
-- [ ] Tailscale 経由で Netdata（`http://<TAILSCALE_IP>:19999`）にアクセスできる
 - [ ] Tailscale 経由で RCON（ポート `25575`）に接続できる
 - [ ] バックアップコンテナが正常に動作している（`docker compose logs backups` でエラーがないことを確認）

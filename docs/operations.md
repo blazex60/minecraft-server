@@ -6,7 +6,6 @@
 |---|---|---|
 | `mc` | PaperMC 1.21.11 | Minecraftサーバー本体 |
 | `backups` | itzg/mc-backup | 自動バックアップ（12時間ごと） |
-| `netdata` | Netdata | リソース監視 |
 | `playit` | playit.gg agent | 外部公開トンネル |
 
 ---
@@ -26,7 +25,6 @@ docker compose restart
 # 特定サービスのみ再起動
 docker compose restart mc
 docker compose restart backups
-docker compose restart netdata
 docker compose restart playit
 ```
 
@@ -48,7 +46,6 @@ docker compose ps -a
 NAME         IMAGE                        STATUS
 mc           itzg/minecraft-server        Up (healthy)
 mc_backup    itzg/mc-backup               Up
-mc_netdata   netdata/netdata              Up
 playit       ghcr.io/playit-cloud/...     Up
 ```
 
@@ -63,7 +60,6 @@ docker compose logs -f
 # 特定コンテナのログ
 docker compose logs -f mc
 docker compose logs -f backups
-docker compose logs -f netdata
 docker compose logs -f playit
 
 # 直近100行のみ表示
@@ -207,27 +203,11 @@ rm -rf ./data_old
 
 ---
 
-## 6. Netdata モニタリング
+## 6. リソース監視
 
-### アクセス
-
-Tailscale ネットワーク上から以下の URL にアクセスします。
-
+```bash
+docker stats mc
 ```
-http://100.95.202.53:19999
-```
-
-### 主要な確認項目
-
-| 項目 | 場所 |
-|---|---|
-| CPU使用率 | System > CPU |
-| メモリ使用量 | System > RAM |
-| ディスク使用量 | Disk |
-| ネットワーク通信量 | Network |
-| Dockerコンテナ別リソース | Docker |
-
-アラートが発生した場合は画面上部の通知アイコンから確認できます。CPU が常時高負荷の場合は `MC_MEMORY` の調整またはプレイヤー数の制限を検討してください。
 
 ---
 
@@ -443,5 +423,3 @@ grep MC_MEMORY .env
 # メモリ使用量のリアルタイム確認
 docker stats mc
 ```
-
-Netdata（`http://100.95.202.53:19999`）でもメモリ使用の推移を確認できます。
