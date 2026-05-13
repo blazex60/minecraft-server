@@ -56,6 +56,10 @@ services:
       - ./backups:/backups
     restart: unless-stopped
 
+  # =================================================== #
+  #   Tunnel container service                          #
+  # =================================================== #
+
   playit:
     image: ghcr.io/playit-cloud/playit-agent@sha256:84d8ea84529ae9ac6a4c9463033e0b7d29c1e6cc8311897bd2df0cb1a7af06f6
     network_mode: host
