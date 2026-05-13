@@ -53,7 +53,7 @@ services:
       PRUNE_BACKUPS_DAYS: "14"
     volumes:
       - ./data:/data:ro
-      - ./backups:/backups
+      - /mnt/backups:/backups
     restart: unless-stopped
 
   # =================================================== #
