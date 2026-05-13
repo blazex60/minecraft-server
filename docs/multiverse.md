@@ -64,7 +64,7 @@ docker compose restart mc
 
 ### 4. インベントリ分離（Multiverse-Inventories）
 
-`./data/plugins/Multiverse-Inventories/config.yml` を編集：
+`./data/plugins/Multiverse-Inventories/groups.yml` を編集：
 
 ```yaml
 groups:
@@ -165,7 +165,7 @@ regions:
 ゲームルールでモブスポーンや天候も無効化します（lobbyワールドで実行）：
 
 ```
-/gamerule doMobSpawning false
+/gamerule spawn_mobs false
 /gamerule doFireTick false
 /gamerule keepInventory true
 /gamerule doWeatherCycle false
