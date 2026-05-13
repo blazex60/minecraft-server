@@ -29,7 +29,7 @@ docker compose restart mc
 | デス後のリスポーン | **現在いるワールド**（lobbyには戻らない） |
 | ベッドがある場合 | ベッドのスポーン地点 |
 
-`firstspawnworld lobby` は新規プレイヤーの初回スポーンのみに適用されます。リスポーンは各ワールド内で行われるのがMultiverseのデフォルト動作です。
+`first-spawn-location lobby` は新規プレイヤーの初回スポーンのみに適用されます。リスポーンは各ワールド内で行われるのがMultiverseのデフォルト動作です。
 
 ---
 
@@ -43,7 +43,7 @@ docker compose restart mc
 /mv modify lobby set gamemode ADVENTURE
 
 # 建築（スーパーフラット・クリエイティブ）
-/mv create build NORMAL -t FLAT
+/mv create build NORMAL --world-type FLAT
 /mv modify build set gamemode CREATIVE
 
 # 公開サバイバル
@@ -58,8 +58,9 @@ docker compose restart mc
 
 ```
 /mv setspawn
-/mv config firstspawnworld lobby
-/mv config enforceaccess false
+/mv config first-spawn-override true
+/mv config first-spawn-location lobby
+/mv config enforce-access false
 ```
 
 ### 4. インベントリ分離（Multiverse-Inventories）
@@ -94,7 +95,7 @@ groups:
 
 ### 5. ロビーの行動制限（WorldGuard）
 
-移動とポータル利用のみ許可し、それ以外のアクションをすべて禁止します。
+移動以外のアクションをすべて禁止します。ポータルはエンティティの移動イベントで処理されるため、`use`/`interact` の制限を受けません。
 
 **lobbyワールドに移動してから**以下を実行します。
 
@@ -116,9 +117,6 @@ groups:
 # ドロップ・拾いを禁止
 /rg flag __global__ item-drop deny
 /rg flag __global__ item-pickup deny
-
-# ポータル（ネザー・エンド）の利用を許可
-/rg flag __global__ use-portal allow
 ```
 
 > **注意**: OP権限を持つプレイヤーはWorldGuardの制限をデフォルトでバイパスします。一般プレイヤーのみ制限が適用されます。
@@ -148,7 +146,6 @@ regions:
       mob-damage: deny
       item-drop: deny
       item-pickup: deny
-      use-portal: allow
     members:
       players: []
       groups: []
@@ -166,15 +163,15 @@ regions:
 
 ```
 /gamerule spawn_mobs false
-/gamerule doFireTick false
-/gamerule keepInventory true
-/gamerule doWeatherCycle false
+/gamerule fire_spread_radius_around_player 0
+/gamerule keep_inventory true
+/gamerule advance_weather false
 /weather clear
-/gamerule doDaylightCycle false
+/gamerule advance_time false
 /time set 6000
 ```
 
-> **注意**: Multiverse-Core 4.x では `/mv modify` による `allowweather` 設定はサポートされていません。天候の固定は上記のゲームルールで行ってください。
+> **注意**: Multiverse-Core では `/mv modify` による天候固定設定はサポートされていません。天候の固定は上記のゲームルールで行ってください。
 
 ---
 
@@ -212,27 +209,28 @@ regions:
 /mv modify <ワールド名> set pvp <true|false>
 
 # モンスターのスポーン
-/mv modify <ワールド名> set monsters <true|false>
+/mv entity-spawn-config modify <ワールド名> monster set spawn <true|false>
 
 # 動物のスポーン
-/mv modify <ワールド名> set animals <true|false>
+/mv entity-spawn-config modify <ワールド名> animal set spawn <true|false>
 ```
 
 ### ワールドの読み込み・アンロード
 
 ```
-# アンロード（メモリから解放）
+# アンロード（Multiverse管理から除外。フォルダは残る）
 /mv unload <ワールド名>
 
-# 再読み込み
-/mv load <ワールド名>
+# 再読み込み（5.x では import を使用）
+/mv import <ワールド名> NORMAL
 ```
 
 ### ワールドの削除
 
 ```
-# 削除（取り消し不可）
+# 削除（取り消し不可。確認コマンドが必要）
 /mv delete <ワールド名>
+/mv confirm
 ```
 
 ---
@@ -259,8 +257,8 @@ mcrcon -H 100.95.202.53 -P 25575 -p 'パスワード'
 ### プレイヤーがワールドに入れない
 
 ```
-# enforceaccessが有効か確認
-/mv config enforceaccess
+# enforce-accessが有効か確認
+/mv config enforce-access
 
 # プレイヤーの権限確認（LuckPerms）
 /lp user <プレイヤー名> permission info
